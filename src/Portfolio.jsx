@@ -277,7 +277,7 @@ export default function Portfolio() {
         </section>
 
         {/* Contact */}
-        <section id="contact" className="mt-12 p-6 rounded-2xl">
+        <section id="contact" className="mt-12 rounded-2xl">
           <div className="grid md:grid-cols-2 gap-6 items-start">
             <div className="bg-white p-6 rounded-lg shadow-sm">
               <h2 className="text-xl font-bold mb-2">Contact</h2>
