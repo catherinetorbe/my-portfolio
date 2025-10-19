@@ -24,7 +24,7 @@ export default function Portfolio() {
             <a
               href="/Catherine_Orbe_Multi_Role_Resume.docx"
               download
-              className="ml-3 inline-block px-3 py-1.5 rounded-md border border-gray-200 text-sm"
+              className="ml-3 inline-block px-3 py-1.5 rounded-md border border-gray-200 text-sm bg-blue-900 text-white hover:bg-blue-800"
             >
               Download Resume
             </a>
@@ -38,9 +38,7 @@ export default function Portfolio() {
           <div>
             <h1 className="text-4xl md:text-5xl font-extrabold mb-4">
               Hi, I’m Catherine —{" "}
-              <span className="text-indigo-600">
-                IT Graduate & Web Designer
-              </span>
+              <span className="text-blue-900">IT Graduate & Web Designer</span>
             </h1>
             <p className="text-lg leading-relaxed mb-6">
               I design clean, accessible websites and solve technical problems.
@@ -50,7 +48,7 @@ export default function Portfolio() {
             <div className="flex gap-3">
               <a
                 href="#contact"
-                className="px-4 py-2 bg-indigo-600 text-white rounded-md shadow-sm"
+                className="px-4 py-2 bg-blue-900 text-white rounded-md shadow-sm"
               >
                 Work with me
               </a>
@@ -181,7 +179,7 @@ export default function Portfolio() {
                   href="https://catherinetorbe.github.io/about-me/"
                   target="_blank"
                   rel="noreferrer"
-                  className="text-indigo-600 text-sm"
+                  className="text-blue-900 text-sm"
                 >
                   View
                 </a>
@@ -197,7 +195,7 @@ export default function Portfolio() {
               </p>
               <div className="mt-3 flex items-center justify-between">
                 <div className="text-xs text-gray-500">Canva / Design</div>
-                <button className="text-indigo-600 text-sm" disabled>
+                <button className="text-blue-900 text-sm" disabled>
                   Gallery
                 </button>
               </div>
@@ -269,7 +267,7 @@ export default function Portfolio() {
 
           <div className="mt-4 text-sm text-gray-500">
             Have ideas?{" "}
-            <a href="#contact" className="text-indigo-600 underline">
+            <a href="#contact" className="text-blue-900 underline">
               Contact me
             </a>{" "}
             — I’d love to collaborate!
@@ -290,7 +288,7 @@ export default function Portfolio() {
                   <strong>Email:</strong>{" "}
                   <a
                     href="https://mailto:catherinetorbe@gmail.com"
-                    className="text-indigo-600"
+                    className="text-blue-900"
                   >
                     catherinetorbe@gmail.com
                   </a>
@@ -301,7 +299,7 @@ export default function Portfolio() {
                     href="https://www.linkedin.com/in/catherine-orbe-6339b4380"
                     target="_blank"
                     rel="noreferrer"
-                    className="text-indigo-600"
+                    className="text-blue-900"
                   >
                     linkedin.com/in/catherine-orbe-6339b4380
                   </a>
@@ -312,7 +310,7 @@ export default function Portfolio() {
                     href="https://catherinetorbe.github.io/about-me/"
                     target="_blank"
                     rel="noreferrer"
-                    className="text-indigo-600"
+                    className="text-blue-900"
                   >
                     catherinetorbe.github.io/about-me/
                   </a>
