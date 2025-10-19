@@ -1,6 +1,46 @@
+import { useState } from "react";
 import Profile from "./assets/profile.png";
+import Project1 from "./assets/portfolio.png";
+import Project2 from "./assets/community-project.png";
+import { useNavigate } from "react-router-dom";
 
 export default function Portfolio() {
+  const navigate = useNavigate();
+  const [menuOpen, setMenuOpen] = useState(false);
+  const [activeProject, setActiveProject] = useState(null);
+
+  const projects = [
+    {
+      id: 1,
+      img: Project1,
+      title: "Personal Portfolio Website",
+      preview: "https://catherinetorbe.github.io/about-me/",
+      description:
+        "A modern responsive portfolio site built with React, Vite, and TailwindCSS.",
+      live: "https://catherinetorbe.github.io/about-me/",
+      code: "https://github.com/catherinetorbe/about-me",
+    },
+    {
+      id: 2,
+      img: Project2,
+      title: "Community Project Campaign",
+      preview: "https://www.facebook.com/profile.php?id=61553250814490",
+      description:
+        "Canva-designed digital campaign posters and event branding for Barangay Carikkikan Norte.",
+      live: "https://www.facebook.com/profile.php?id=61553250814490", // you can link to your Facebook or Google Drive sample
+    },
+    // {
+    //   id: 3,
+    //   title: "Student Records Tracker (Excel App)",
+    //   img: "https://images.unsplash.com/photo-1658203897339-0b8c64a42fba?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8N3x8c3ByZWFkc2hlZXR8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&q=60&w=600",
+    //   preview: "#",
+    //   description:
+    //     "An organized Excel-based record management system built during my ISU internship.",
+    //   live: "#",
+    //   code: "",
+    // },
+  ];
+
   return (
     <div className="min-h-full bg-gray-50 text-gray-900 antialiased">
       <header className="sticky top-0 bg-white/80 backdrop-blur z-40 shadow-sm">
@@ -8,7 +48,46 @@ export default function Portfolio() {
           <a href="#home" className="font-semibold text-xl">
             Catherine Orbe
           </a>
-          <nav className="space-x-4 text-sm">
+          {/* Humberger Button */}
+          <button
+            className="md:hidden p-2 rounded-md text-gray-700 hover:bg-gray-100"
+            onClick={() => setMenuOpen(!menuOpen)}
+          >
+            {menuOpen ? (
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="h-6 w-6"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
+                  d="M6 18L18 6M6 6l12 12"
+                />
+              </svg>
+            ) : (
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="h-6 w-6"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
+                  d="M4 6h16M4 12h16M4 18h16"
+                />
+              </svg>
+            )}
+          </button>
+
+          {/* Desktop Nav */}
+          <nav className="hidden md:flex gap-6 items-center">
             <a href="#about" className="hover:underline">
               About
             </a>
@@ -29,6 +108,49 @@ export default function Portfolio() {
               Download Resume
             </a>
           </nav>
+          {/* Mobile Dropdown Nav */}
+          {menuOpen && (
+            <nav className="md:hidden absolute top-16 left-0 w-full bg-white border-t shadow-md">
+              <div className="flex flex-col px-6 py-4 space-y-3">
+                <a
+                  href="#about"
+                  className="hover:underline"
+                  onClick={() => setMenuOpen(false)}
+                >
+                  About
+                </a>
+                <a
+                  href="#projects"
+                  className="hover:underline"
+                  onClick={() => setMenuOpen(false)}
+                >
+                  Portfolio
+                </a>
+                <a
+                  href="#services"
+                  className="hover:underline"
+                  onClick={() => setMenuOpen(false)}
+                >
+                  Services
+                </a>
+                <a
+                  href="#contact"
+                  className="hover:underline"
+                  onClick={() => setMenuOpen(false)}
+                >
+                  Contact
+                </a>
+                <a
+                  href="/Catherine_Orbe_Multi_Role_Resume.docx"
+                  download
+                  className="mt-2 inline-block px-3 py-1.5 rounded-md border border-gray-200 text-sm bg-blue-900 text-white text-center"
+                  onClick={() => setMenuOpen(false)}
+                >
+                  Download Resume
+                </a>
+              </div>
+            </nav>
+          )}
         </div>
       </header>
 
@@ -77,13 +199,13 @@ export default function Portfolio() {
             </ul>
           </div>
           <div className="flex justify-center">
-            <div className="w-72 h-72 rounded-2xl bg-gradient-to-br from-indigo-100 to-white shadow-lg flex items-center justify-center">
+            <div className="w-72 h-72 rounded-full bg-gradient-to-br from-indigo-100 to-white shadow-lg flex items-center justify-center">
               {/* Placeholder for profile image */}
-              <div className="w-64 h-64 rounded-xl overflow-hidden shadow-md border border-gray-200">
+              <div className="w-64 h-64 rounded-xl">
                 <img
                   src={Profile}
                   alt="Catherine Orbe"
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-cover rounded-full"
                 />
               </div>
             </div>
@@ -104,7 +226,7 @@ export default function Portfolio() {
             with community projects, academic internships, and small freelance
             assignments to gain practical experience.
           </p>
-          <h2 className="text-2xl font-bold mb-4">Tools & Technologies</h2>
+          {/* <h2 className="text-2xl font-bold mb-4">Tools & Technologies</h2> */}
           {/* <div className="flex flex-wrap gap-6 text-4xl text-indigo-600">
             <div className="flex flex-col items-center text-sm text-gray-700">
               <FaReact title="React" /> React
@@ -163,59 +285,95 @@ export default function Portfolio() {
         </section>
 
         {/* Projects */}
-        <section id="projects" className="mt-12">
-          <h2 className="text-2xl font-bold mb-4">Selected Projects</h2>
-          <div className="grid md:grid-cols-3 gap-6">
-            {/* Project Card 1 */}
-            <article className="bg-white p-4 rounded-xl shadow-sm">
-              <h3 className="font-semibold">Personal Portfolio Website</h3>
-              <p className="text-sm text-gray-600 mt-2">
-                Built a responsive portfolio site to showcase projects using
-                HTML/CSS and hosted on GitHub Pages.
-              </p>
-              <div className="mt-3 flex items-center justify-between">
-                <div className="text-xs text-gray-500">Wix / HTML / CSS</div>
-                <a
-                  href="https://catherinetorbe.github.io/about-me/"
-                  target="_blank"
-                  rel="noreferrer"
-                  className="text-blue-900 text-sm"
-                >
-                  View
-                </a>
-              </div>
-            </article>
+        <section id="projects" className="mt-12 p-6 rounded-2xl">
+          <h2 className="text-2xl font-bold mb-4">💼 Portfolio Gallery</h2>
+          <p className="text-gray-700 mb-6">
+            A collection of my featured projects. Click on any project to view a
+            live preview and learn more about how it was made.
+          </p>
 
-            {/* Project Card 2 */}
-            <article className="bg-white p-4 rounded-xl shadow-sm">
-              <h3 className="font-semibold">Community Campaign Graphics</h3>
-              <p className="text-sm text-gray-600 mt-2">
-                Designed posters and social media assets for Barangay Carikkikan
-                Norte events and promotions using Canva.
-              </p>
-              <div className="mt-3 flex items-center justify-between">
-                <div className="text-xs text-gray-500">Canva / Design</div>
-                <button className="text-blue-900 text-sm" disabled>
-                  Gallery
-                </button>
+          {/* Project Grid */}
+          <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-6">
+            {projects.map((project) => (
+              <div
+                key={project.id}
+                className="rounded-xl overflow-hidden shadow-md border border-gray-100 hover:shadow-lg transition-transform hover:scale-105 cursor-pointer"
+                onClick={() =>
+                  project.title === "Community Project Campaign"
+                    ? navigate("/community-project")
+                    : setActiveProject(project)
+                }
+              >
+                <img
+                  src={project.img}
+                  alt={project.title}
+                  className="w-full h-40 object-cover"
+                />
+                <div className="p-4">
+                  <h3 className="font-semibold text-lg">{project.title}</h3>
+                  <p className="text-sm text-gray-600 mt-2 line-clamp-3">
+                    {project.description}
+                  </p>
+                  <button className="mt-3 text-indigo-600 text-sm hover:underline">
+                    {project.title === "Community Project Campaign"
+                      ? "View Details →"
+                      : "Live Preview →"}
+                  </button>
+                </div>
               </div>
-            </article>
-
-            {/* Project Card 3 */}
-            <article className="bg-white p-4 rounded-xl shadow-sm">
-              <h3 className="font-semibold">
-                Student Records System (Intern Support)
-              </h3>
-              <p className="text-sm text-gray-600 mt-2">
-                Assisted in data organization and reporting for ISU Ilagan
-                Campus using MS Excel and Google Sheets.
-              </p>
-              <div className="mt-3 flex items-center justify-between">
-                <div className="text-xs text-gray-500">Excel / Data</div>
-                <span className="text-sm text-gray-500">Private</span>
-              </div>
-            </article>
+            ))}
           </div>
+
+          {/* Modal for Live Preview */}
+          {activeProject && (
+            <div className="fixed inset-0 bg-black/60 flex items-center justify-center z-50">
+              <div className="bg-white rounded-xl shadow-lg max-w-3xl w-[90%] relative overflow-hidden">
+                <button
+                  onClick={() => setActiveProject(null)}
+                  className="absolute top-3 right-3 text-gray-600 hover:text-gray-800"
+                >
+                  ✖
+                </button>
+
+                <iframe
+                  src={activeProject.preview}
+                  title={activeProject.title}
+                  className="w-full h-64 object-cover"
+                  sandbox="allow-scripts allow-same-origin"
+                ></iframe>
+
+                <div className="p-6">
+                  <h3 className="text-2xl font-bold">{activeProject.title}</h3>
+                  <p className="text-gray-700 mt-2 mb-4">
+                    {activeProject.description}
+                  </p>
+
+                  <div className="flex gap-4">
+                    {activeProject.live && (
+                      <a
+                        href={activeProject.live}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="px-4 py-2 bg-indigo-600 text-white rounded-md hover:bg-indigo-700"
+                      >
+                        Live Site
+                      </a>
+                    )}
+                    {activeProject.code && (
+                      <a
+                        href={activeProject.code}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="px-4 py-2 border rounded-md hover:bg-gray-50"
+                      >
+                        View Code
+                      </a>
+                    )}
+                  </div>
+                </div>
+              </div>
+            </div>
+          )}
         </section>
 
         {/* Services */}
@@ -249,8 +407,92 @@ export default function Portfolio() {
           </div>
         </section>
 
+        {/* Blog Section */}
+        <section id="blog" className="mt-12 p-6 rounded-2xl">
+          <h2 className="text-2xl font-bold mb-4">Blog and Tutorials</h2>
+          <p className="text-gray-700 mb-6">
+            Note: This section is under development. Meanwhile, here are some
+            sample blog post ideas I plan to write about:
+          </p>
+          <div className="grid sm:grid-cols-2 md:grid-cols3 gap-6">
+            {/* Blog Card 1 */}
+            <article className="bg-white p-4 rounded-xl shadow-sm">
+              <img
+                src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OHx8Y29kaW5nfGVufDB8fDB8fHww&auto=format&fit=crop&q=60&w=1000"
+                alt="Blog Post 1"
+                className="w-full h-40 object-cover"
+              />
+              <div className="p-4">
+                <h3 className="font-semibold text-lg">
+                  {" "}
+                  5 Easy Tips for Better Web Design
+                </h3>
+                <p className="text-sm text-gray-600 mt-2">
+                  Learn simple design principles to make your website look more
+                  professional and user-friendly.
+                </p>
+                <a
+                  href="#"
+                  className="inline-block mt-3 text-blue-900 text-sm hover:underline"
+                >
+                  Read More...
+                </a>
+              </div>
+            </article>
+            {/* Blog Card 2 */}
+            <article className="bg-white p-4 rounded-xl shadow-sm">
+              <img
+                src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8dGVjaCBzdXBwb3J0fGVufDB8fDB8fHww&auto=format&fit=crop&q=60&w=1000"
+                alt="Blog Post 2"
+                className="w-full h-40 object-cover"
+              />
+              <div className="p-4">
+                <h3 className="font-semibold text-lg">
+                  Top 7 IT Support Tricks for Small Businesses
+                </h3>
+                <p className="text-sm text-gray-600 mt-2">
+                  Practical tips to keep your business tech running smoothly
+                  without breaking the bank.
+                </p>
+                <a
+                  href="#"
+                  className="inline-block mt-3 text-blue-900 text-sm hover:underline"
+                >
+                  Read More...
+                </a>
+              </div>
+            </article>
+            {/* Blog Card 3 */}
+            <article className="bg-white p-4 rounded-xl shadow-sm">
+              <img
+                src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8Z3JhcGhpYyBkZXNpZ258ZW58MHx8MHx8&auto=format&fit=crop&q=60&w=1000"
+                alt="Blog Post 3"
+                className="w-full h-40 object-cover"
+              />
+              <div className="p-4">
+                <h3 className="font-semibold text-lg">
+                  Designing Eye-Catching Graphics with Canva
+                </h3>
+                <p className="text-sm text-gray-600 mt-2">
+                  A beginner’s guide to creating stunning visuals for social
+                  media and marketing.
+                </p>
+                <a
+                  href="#"
+                  className="inline-block mt-3 text-blue-900 text-sm hover:underline"
+                >
+                  Read More...
+                </a>
+              </div>
+            </article>
+          </div>
+        </section>
+
         {/* Future Features */}
-        <section id="features" className="mt-12 p-6 rounded-2xl ">
+        <section
+          id="features"
+          className="mt-12 p-6 bg-white rounded-2xl shadow-sm"
+        >
           <h2 className="text-2xl font-bold mb-3">✨ Upcoming Features</h2>
           <p className="text-gray-700 mb-4">
             I’m constantly improving this portfolio to include new features and
@@ -277,7 +519,7 @@ export default function Portfolio() {
         {/* Contact */}
         <section id="contact" className="mt-12 rounded-2xl">
           <div className="grid md:grid-cols-2 gap-6 items-start">
-            <div className="bg-white p-6 rounded-lg shadow-sm">
+            <div className=" p-6 rounded-lg ">
               <h2 className="text-xl font-bold mb-2">Contact</h2>
               <p className="text-sm text-gray-700 mb-4">
                 Interested in working together? Send a message or book a quick
